@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Classement complet des voitures les plus vendues en France en 2024. Analyse détaillée du marché automobile avec focus sur les véhicules électriques, hybrides et thermiques. Statistiques et tendances du secteur automobile français.">
+    <meta name="keywords" content="voitures France 2024, classement automobile France, Renault Clio, Dacia Sandero, Peugeot 208, marché automobile français, ventes voitures électriques, statistiques automobiles, hybrides France, véhicules électriques">
+    <meta name="author" content="Analyse Automobile France">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Top des Voitures en France 2024 | Classement et Analyse du Marché">
+    <meta property="og:description" content="Découvrez le classement complet et l'analyse des ventes automobiles en France pour 2024. Focus sur l'évolution des véhicules électriques et hybrides.">
+    <meta property="og:type" content="article">
+    <title>Classement des Voitures les Plus Vendues en France 2024 | Analyse du Marché Automobile</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Classement des Voitures les Plus Vendues en France - 2024",
+      "datePublished": "2024",
+      "author": {
+        "@type": "Organization",
+        "name": "Analyse Automobile France"
+      },
+      "description": "Analyse détaillée du marché automobile français en 2024, avec focus sur les ventes de véhicules électriques, hybrides et thermiques.",
+      "keywords": "automobile France, ventes voitures, marché auto français, véhicules électriques, hybrides"
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #1e3799;
+            --secondary-color: #4a69bd;
+            --accent-color: #45aaf2;
+            --background-color: #f5f6fa;
+            --text-color: #2f3640;
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --success-color: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #header-particles,
+        #footer-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(rgba(30, 55, 153, 0.05), rgba(74, 105, 189, 0.05));
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0;
+        }
+
+        .car-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: visible;
+            min-height: 600px;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .car-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .sales-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--success-color);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            z-index: 3;
+        }
+
+        .car-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .car-card p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .car-info {
+            background: rgba(74, 105, 189, 0.05);
+            padding: 0.8rem;
+            border-radius: 10px;
+            margin: 0.8rem 0;
+        }
+
+        .car-info ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .car-info li {
+            margin: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .car-info li::before {
+            content: '•';
+            color: var(--accent-color);
+        }
+
+        .stats {
+            background: white;
+            padding: 3rem;
+            margin: 3rem 0;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(rgba(30, 55, 153, 0.05), rgba(74, 105, 189, 0.05));
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+        }
+
+        footer .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .car-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="header-particles"></div>
+        <div class="container">
+            <h1>Classement des Voitures en France</h1>
+            <p>Analyse du Marché Automobile - 2024</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Les Modèles les Plus Vendus</h2>
+            <p>Découvrez l'évolution du marché automobile français et les tendances de l'année 2024</p>
+        </section>
+
+        <section class="car-grid">
+            <article class="car-card">
+                <div class="sales-badge">81 414 ventes</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Renault_Clio_V_Genf_2019_1Y7A5590.jpg/1280px-Renault_Clio_V_Genf_2019_1Y7A5590.jpg" alt="Renault Clio 2024" class="car-image">
+                <h3>1. Renault Clio</h3>
+                <p>Leader du marché français, la Clio confirme sa position avec une gamme hybride performante.</p>
+                <div class="car-info">
+                    <ul>
+                        <li>Motorisation: Hybride E-Tech disponible</li>
+                        <li>Prix: À partir de 19.800€</li>
+                        <li>Évolution: -7.3% vs 2023</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="car-card">
+                <div class="sales-badge">69 180 ventes</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Dacia_Sandero_Stepway_III_IMG_4214.jpg/1920px-Dacia_Sandero_Stepway_III_IMG_4214.jpg" alt="Dacia Sandero 2024" class="car-image">
+                <h3>2. Dacia Sandero</h3>
+                <p>La citadine accessible poursuit sa progression avec une hausse significative des ventes.</p>
+                <div class="car-info">
+                    <ul>
+                        <li>Motorisation: ECO-G (GPL) disponible</li>
+                        <li>Prix: À partir de 11.990€</li>
+                        <li>Évolution: +9.6% vs 2023</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="car-card">
+                <div class="sales-badge">45 789 ventes</div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Peugeot_e-208_facelift_Auto_Zuerich_2023_1X7A1204.jpg/1280px-Peugeot_e-208_facelift_Auto_Zuerich_2023_1X7A1204.jpg" alt="Peugeot 208 2024" class="car-image">
+                <h3>3. Peugeot 208</h3>
+                <p>La 208 se distingue avec sa version électrique représentant 35% des ventes du modèle.</p>
+                <div class="car-info">
+                    <ul>
+                        <li>Version e-208: 400 km d'autonomie</li>
+                        <li>Prix: À partir de 17.990€</li>
+                        <li>Évolution: +8.1% vs 2023</li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <section class="stats">
+            <h2>État du Marché Automobile Français 2024</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">45.5%</div>
+                    <p>Part des véhicules hybrides</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1 265 905</div>
+                    <p>Immatriculations totales</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20.4%</div>
+                    <p>Part des véhicules électriques</p>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-wrapper">
+                    <h3>Évolution des Ventes par Type de Motorisation</h3>
+                    <canvas id="salesTypeChart"></canvas>
+                </div>
+                <div class="chart-wrapper">
+                    <h3>Top 3 Modèles - Évolution des Ventes</h3>
+                    <canvas id="topModelsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .charts-container {
+                margin-top: 3rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                gap: 2rem;
+            }
+
+            .chart-wrapper {
+                background: white;
+                padding: 2rem;
+                border-radius: 15px;
+                box-shadow: var(--card-shadow);
+            }
+
+            .chart-wrapper h3 {
+                text-align: center;
+                color: var(--primary-color);
+                margin-bottom: 1.5rem;
+            }
+
+            canvas {
+                width: 100% !important;
+                height: 300px !important;
+            }
+        </style>
+
+        <script>
+            // Define the particle system function first
+            function createParticleSystem(containerId, color, particleSize = 0.05, particleCount = 200) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(50, container.offsetWidth / container.offsetHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ 
+                    alpha: true,
+                    antialias: true 
+                });
+                
+                renderer.setSize(container.offsetWidth, container.offsetHeight);
+                container.appendChild(renderer.domElement);
+
+                const starGeometry = new THREE.BufferGeometry();
+                const positions = new Float32Array(particleCount * 3);
+                const sizes = new Float32Array(particleCount);
+
+                for (let i = 0; i < particleCount * 3; i += 3) {
+                    positions[i] = (Math.random() - 0.5) * 10;     // x
+                    positions[i + 1] = (Math.random() - 0.5) * 5;  // y
+                    positions[i + 2] = (Math.random() - 0.5) * 3;  // z
+                    sizes[i / 3] = Math.random() * 0.5 + 0.5;
+                }
+
+                starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+                starGeometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+
+                const starMaterial = new THREE.PointsMaterial({
+                    color: color,
+                    size: particleSize,
+                    transparent: true,
+                    opacity: 0.8,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false,
+                    sizeAttenuation: true
+                });
+
+                const stars = new THREE.Points(starGeometry, starMaterial);
+                scene.add(stars);
+                camera.position.z = 4;
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    stars.rotation.y += 0.0005;
+                    stars.rotation.x += 0.0002;
+                    
+                    const time = Date.now() * 0.0005;
+                    const positions = starGeometry.attributes.position.array;
+                    
+                    for(let i = 0; i < positions.length; i += 3) {
+                        positions[i + 1] += Math.sin(time + positions[i]) * 0.002;
+                        positions[i + 2] += Math.cos(time + positions[i + 1]) * 0.002;
+                    }
+                    
+                    starGeometry.attributes.position.needsUpdate = true;
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                // Handle resize
+                const handleResize = () => {
+                    const width = container.offsetWidth;
+                    const height = container.offsetHeight;
+                    camera.aspect = width / height;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(width, height);
+                };
+
+                window.addEventListener('resize', handleResize);
+                handleResize();
+            }
+
+            // Initialize particles when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                createParticleSystem('header-particles', 0xffffff, 0.03, 300);
+                createParticleSystem('footer-particles', 0xffffff, 0.02, 200);
+
+                // Initialize Charts
+                // Sales by Engine Type Chart
+                const salesTypeCtx = document.getElementById('salesTypeChart').getContext('2d');
+                new Chart(salesTypeCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: 'Électrique',
+                            data: [6.7, 9.8, 13.3, 16.8, 20.4],
+                            borderColor: '#2ecc71',
+                            tension: 0.3
+                        }, {
+                            label: 'Hybride',
+                            data: [14.8, 25.8, 30.2, 38.5, 45.5],
+                            borderColor: '#3498db',
+                            tension: 0.3
+                        }, {
+                            label: 'Thermique',
+                            data: [78.5, 64.4, 56.5, 44.7, 34.1],
+                            borderColor: '#e74c3c',
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Part de marché par type de motorisation (%)'
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                });
+
+                // Top Models Evolution Chart
+                const topModelsCtx = document.getElementById('topModelsChart').getContext('2d');
+                new Chart(topModelsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{
+                            label: 'Renault Clio',
+                            data: [84031, 85459, 82569, 87401, 81414],
+                            backgroundColor: '#1e3799'
+                        }, {
+                            label: 'Dacia Sandero',
+                            data: [53417, 69892, 64431, 63201, 69180],
+                            backgroundColor: '#4a69bd'
+                        }, {
+                            label: 'Peugeot 208',
+                            data: [92600, 88037, 88812, 85232, 45789],
+                            backgroundColor: '#45aaf2'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Ventes annuelles des modèles les plus populaires'
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString('fr-FR');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    </main>
+
+    <footer>
+        <div id="footer-particles"></div>
+        <div class="container">
+            <p>© 2024 Analyse Automobile France - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>
