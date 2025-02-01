@@ -898,6 +898,9 @@
           createParticleSystem("header-particles", 0xffffff, 0.03, 300);
           createParticleSystem("footer-particles", 0xffffff, 0.02, 200);
 
+          // Array to store chart instances
+          const chartInstances = [];
+
           // Common chart options for better mobile display
           const commonChartOptions = {
             responsive: true,
@@ -923,7 +926,7 @@
 
           // Sales by Engine Type Chart
           const salesTypeCtx = document.getElementById("salesTypeChart").getContext("2d");
-          new Chart(salesTypeCtx, {
+          const salesTypeChart = new Chart(salesTypeCtx, {
             type: "line",
             data: {
               labels: ["2020", "2021", "2022", "2023", "2024"],
@@ -970,10 +973,11 @@
               }
             },
           });
+          chartInstances.push(salesTypeChart);
 
           // Top Models Evolution Chart
           const topModelsCtx = document.getElementById("topModelsChart").getContext("2d");
-          new Chart(topModelsCtx, {
+          const topModelsChart = new Chart(topModelsCtx, {
             type: "bar",
             data: {
               labels: ["2020", "2021", "2022", "2023", "2024"],
@@ -1019,13 +1023,13 @@
               }
             },
           });
+          chartInstances.push(topModelsChart);
 
           // Handle resize for charts
           window.addEventListener('resize', () => {
             const isMobile = window.innerWidth < 768;
-            const charts = Chart.instances;
             
-            charts.forEach(chart => {
+            chartInstances.forEach(chart => {
               // Update font sizes
               chart.options.plugins.legend.labels.font.size = isMobile ? 10 : 12;
               chart.options.plugins.title.font.size = isMobile ? 12 : 14;
