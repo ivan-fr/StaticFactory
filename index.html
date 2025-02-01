@@ -432,6 +432,43 @@
         padding-top: 2rem;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
+
+      .charts-container {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .chart-wrapper {
+        background: white;
+        padding: 1rem;
+        border-radius: 15px;
+        box-shadow: var(--card-shadow);
+        min-height: 350px;
+        width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .charts-container {
+          grid-template-columns: 1fr;
+        }
+        
+        .chart-wrapper {
+          padding: 0.5rem;
+          min-height: 300px;
+        }
+        
+        canvas {
+          height: 250px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .chart-wrapper h3 {
+          font-size: 0.9rem;
+        }
+      }
     </style>
 
     <!-- Chart.js -->
@@ -722,32 +759,34 @@
             <p>Part des véhicules électriques</p>
           </div>
         </div>
-
-        <div class="charts-container">
-          <div class="chart-wrapper">
-            <h3>Évolution des Ventes par Type de Motorisation</h3>
-            <canvas id="salesTypeChart"></canvas>
-          </div>
-          <div class="chart-wrapper">
-            <h3>Top 3 Modèles - Évolution des Ventes</h3>
-            <canvas id="topModelsChart"></canvas>
-          </div>
-        </div>
       </section>
+
+      <div class="charts-container">
+        <div class="chart-wrapper">
+          <h3>Évolution des Ventes par Type de Motorisation</h3>
+          <canvas id="salesTypeChart"></canvas>
+        </div>
+        <div class="chart-wrapper">
+          <h3>Top 3 Modèles - Évolution des Ventes</h3>
+          <canvas id="topModelsChart"></canvas>
+        </div>
+      </div>
 
       <style>
         .charts-container {
           margin-top: 3rem;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           gap: 2rem;
         }
 
         .chart-wrapper {
           background: white;
-          padding: 2rem;
+          padding: 1rem;
           border-radius: 15px;
           box-shadow: var(--card-shadow);
+          min-height: 350px;
+          width: 100%;
         }
 
         .chart-wrapper h3 {
@@ -859,11 +898,31 @@
           createParticleSystem("header-particles", 0xffffff, 0.03, 300);
           createParticleSystem("footer-particles", 0xffffff, 0.02, 200);
 
-          // Initialize Charts
+          // Common chart options for better mobile display
+          const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  boxWidth: 12,
+                  padding: 10,
+                  font: {
+                    size: window.innerWidth < 768 ? 10 : 12
+                  }
+                }
+              },
+              title: {
+                font: {
+                  size: window.innerWidth < 768 ? 12 : 14
+                }
+              }
+            }
+          };
+
           // Sales by Engine Type Chart
-          const salesTypeCtx = document
-            .getElementById("salesTypeChart")
-            .getContext("2d");
+          const salesTypeCtx = document.getElementById("salesTypeChart").getContext("2d");
           new Chart(salesTypeCtx, {
             type: "line",
             data: {
@@ -890,30 +949,30 @@
               ],
             },
             options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                title: {
-                  display: true,
-                  text: "Part de marché par type de motorisation (%)",
-                },
-                legend: {
-                  position: "bottom",
-                },
-              },
+              ...commonChartOptions,
               scales: {
                 y: {
                   beginAtZero: true,
                   max: 100,
+                  ticks: {
+                    font: {
+                      size: window.innerWidth < 768 ? 10 : 12
+                    }
+                  }
                 },
-              },
+                x: {
+                  ticks: {
+                    font: {
+                      size: window.innerWidth < 768 ? 10 : 12
+                    }
+                  }
+                }
+              }
             },
           });
 
           // Top Models Evolution Chart
-          const topModelsCtx = document
-            .getElementById("topModelsChart")
-            .getContext("2d");
+          const topModelsCtx = document.getElementById("topModelsChart").getContext("2d");
           new Chart(topModelsCtx, {
             type: "bar",
             data: {
@@ -937,28 +996,44 @@
               ],
             },
             options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                title: {
-                  display: true,
-                  text: "Ventes annuelles des modèles les plus populaires",
-                },
-                legend: {
-                  position: "bottom",
-                },
-              },
+              ...commonChartOptions,
               scales: {
                 y: {
                   beginAtZero: true,
                   ticks: {
-                    callback: function (value) {
+                    callback: function(value) {
                       return value.toLocaleString("fr-FR");
                     },
-                  },
+                    font: {
+                      size: window.innerWidth < 768 ? 10 : 12
+                    }
+                  }
                 },
-              },
+                x: {
+                  ticks: {
+                    font: {
+                      size: window.innerWidth < 768 ? 10 : 12
+                    }
+                  }
+                }
+              }
             },
+          });
+
+          // Handle resize for charts
+          window.addEventListener('resize', () => {
+            const isMobile = window.innerWidth < 768;
+            const charts = Chart.instances;
+            
+            charts.forEach(chart => {
+              // Update font sizes
+              chart.options.plugins.legend.labels.font.size = isMobile ? 10 : 12;
+              chart.options.plugins.title.font.size = isMobile ? 12 : 14;
+              chart.options.scales.x.ticks.font.size = isMobile ? 10 : 12;
+              chart.options.scales.y.ticks.font.size = isMobile ? 10 : 12;
+              
+              chart.update();
+            });
           });
         });
       </script>
